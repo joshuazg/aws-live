@@ -25,6 +25,7 @@ db_conn = connections.Connection(
 
 )
 output = {}
+table = "Internship"
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
