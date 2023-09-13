@@ -26,7 +26,10 @@ db_conn = connections.Connection(
 )
 output = {}
 
-
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    return render_template('try.html')
+    
 def get_intern_com_details():
     try:
         # Corrected SQL statement with placeholder
