@@ -38,6 +38,7 @@ def get_intern_com_details():
         cursor = db_conn.cursor()
         
         # Fetch the result
+        cursor.execute(statement)
         result = cursor.fetchone()
 
         if result:
