@@ -52,27 +52,6 @@ def get_intern_com_details():
         
     finally:
         cursor.close()
-        
-def get_intern_com_details():
-    try:
-        # Corrected SQL statement with placeholder
-        statement = "SELECT intern_id, company_name FROM Internship"
-        cursor = db_conn.cursor()
-        
-        # Fetch the result
-        cursor.execute(statement)
-        result = cursor.fetchone()
-
-        if result:
-            intern_id, company_name = result
-            return render_template('try.html', name=intern_id, company_name=company_name)
-        else:
-            return 0
-        
-    except Exception as e:
-        return str(e)
-        
-    finally:
-        cursor.close()        
+              
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
