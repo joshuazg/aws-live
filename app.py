@@ -6,9 +6,9 @@ import boto3
 customhost = "database-1.czj7uvclfwmy.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
-customdb = "database-1"
+customdb = "InternshupDB"
 custombucket = "bucket-internship1"
-customregion = "us-east-1f"
+customregion = "us-east-1"
 
 
 app = Flask(__name__, static_folder='assets')
