@@ -7,8 +7,8 @@ customhost = "database-1.czj7uvclfwmy.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
 customdb = "database-1"
-custombucket = "joshua-internship"
-customregion = "us-east-1"
+custombucket = "bucket-internship1"
+customregion = "us-east-1f"
 
 
 app = Flask(__name__, static_folder='assets')
