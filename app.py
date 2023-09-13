@@ -30,7 +30,7 @@ output = {}
 def home():
     return render_template('try.html')
     
-@app.route("/displayIntern", methods=['GET'])
+@app.route("/", methods=['GET'])
 def get_intern_com_details():
     try:
         # Establish a database connection
