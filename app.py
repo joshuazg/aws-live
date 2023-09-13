@@ -38,7 +38,7 @@ def get_intern_com_details():
         cursor = db_conn.cursor(dictionary=True)  # Use dictionary cursor for easier data manipulation
         
         # Corrected SQL statement to select all rows
-        statement = "SELECT intern_id, company_name FROM Internship"
+        statement = "SELECT intern_id, company_name FROM Internship WHERE intern_id = 1"
         
         # Fetch all rows
         cursor.execute(statement)
