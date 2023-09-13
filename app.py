@@ -27,22 +27,17 @@ db_conn = connections.Connection(
 output = {}
 
 
-@app.route("/displayIntern", methods=['GET'])
-def get_intern_com_details():
+def get_internships():
     try:
         # Corrected SQL statement with placeholder
-        statement = "SELECT intern_id, company_name FROM Internship"
+        statement = "SELECT * FROM Internship"
         cursor = db_conn.cursor()
         
         # Fetch the result
-        result = cursor.fetchone()
+        cursor.execute(statement)
+        internships = cursor.fetchall()
 
-        if result:
-            intern_id, company_name = result
-            return render_template('try.html', name=intern_id, company_name=company_name)
-        else:
-            return 0
-        
+        return internships
     except Exception as e:
         return str(e)
         
