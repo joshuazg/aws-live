@@ -30,7 +30,7 @@ output = {}
 def home():
     return render_template('try.html')
     
-@app.route("/displayIntern", methods=['GET'])
+@app.route("/", methods=['GET'])
 def get_intern_com_details():
     try:
         # Get the intern_id from the query string
