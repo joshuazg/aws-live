@@ -6,7 +6,7 @@ import boto3
 customhost = "database-1.czj7uvclfwmy.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
-customdb = "InternshupDB"
+customdb = "internshupDB"
 custombucket = "bucket-internship1"
 customregion = "us-east-1"
 
