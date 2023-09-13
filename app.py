@@ -30,6 +30,7 @@ output = {}
 def home():
     return render_template('try.html')
     
+@app.route("/displayIntern", methods=['GET'])
 def get_intern_com_details():
     try:
         # Corrected SQL statement with placeholder
@@ -37,9 +38,10 @@ def get_intern_com_details():
         cursor = db_conn.cursor()
         
         # Fetch the result
-        cursor.execute(statement)
-        for row in cursor:
-            intern_id, company_name = row
+        result = cursor.fetchone()
+
+        if result:
+            intern_id, company_name = result
             return render_template('try.html', name=intern_id, company_name=company_name)
         else:
             return 0
