@@ -30,31 +30,32 @@ output = {}
 def home():
     return render_template('try.html')
     
-@app.route("/", methods=['GET'])
+@app.route("/displayIntern", methods=['GET'])
 def get_intern_com_details():
     try:
-        # Get the intern_id from the query string
-        intern_id = request.args.get('intern_id')
+        # Establish a database connection
+        db_conn = mysql.connector.connect(**db_config)
+        cursor = db_conn.cursor(dictionary=True)  # Use dictionary cursor for easier data manipulation
         
-        # Corrected SQL statement with placeholder
+        # Corrected SQL statement to select all rows
         statement = "SELECT intern_id, company_name FROM Internship"
-        cursor = db_conn.cursor()
         
-        # Fetch the result
+        # Fetch all rows
         cursor.execute(statement)
-        result = cursor.fetchone()
+        results = cursor.fetchall()
 
-        if result:
-            intern_id, company_name = result
-            return render_template('try.html', name=intern_id, company_name=company_name)
+        if results:
+            # Pass the results to the HTML template
+            return render_template('try.html', results=results)
         else:
-            return 0
-        
+            return "No data found."
+
     except Exception as e:
         return str(e)
-        
+
     finally:
         cursor.close()
+        db_conn.close()
               
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
