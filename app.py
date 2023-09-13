@@ -27,17 +27,20 @@ db_conn = connections.Connection(
 output = {}
 
 
-def get_internships():
+def get_intern_com_details():
     try:
         # Corrected SQL statement with placeholder
-        statement = "SELECT * FROM Internship"
+        statement = "SELECT intern_id, company_name FROM Internship"
         cursor = db_conn.cursor()
         
         # Fetch the result
         cursor.execute(statement)
-        internships = cursor.fetchall()
-
-        return internships
+        for row in cursor:
+            intern_id, company_name = row
+            return render_template('try.html', name=intern_id, company_name=company_name)
+        else:
+            return 0
+        
     except Exception as e:
         return str(e)
         
