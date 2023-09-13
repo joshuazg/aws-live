@@ -6,9 +6,11 @@
 </head>
 
 <body>
-    <h1>Intern ID</h1>
-    <p>{{ intern_id }}</p>
-    
+   {% for result in results %}
+    <h4>{{ result.intern_id }}</h4>
+    <p>{{ result.company_name }}</p>
+{% endfor %}
+
     
 
 </body>
