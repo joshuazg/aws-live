@@ -33,6 +33,9 @@ def home():
 @app.route("/displayIntern", methods=['GET'])
 def get_intern_com_details():
     try:
+        # Get the intern_id from the query string
+        intern_id = request.args.get('intern_id')
+        
         # Corrected SQL statement with placeholder
         statement = "SELECT intern_id, company_name FROM Internship"
         cursor = db_conn.cursor()
