@@ -30,37 +30,22 @@ output = {}
 def home():
     return render_template('index.html')
 
-@app.route("/displayIntern", methods=['GET'])
-def get_intern_com_details():
-    try:
-        # Corrected SQL statement with placeholder
-        statement = "SELECT intern_id, company_name FROM Internship"
-        cursor = db_conn.cursor()
-        
-        # Fetch the result
-        result = cursor.fetchone()
+@app.route("/index", methods=['GET'])
+def view_internship(internship_id):
 
-        if result:
-            intern_id, company_name = result
-            return render_template('try.html', name=intern_id, company_name=company_name)
-        else:
-            return "No data found"
-        
-    except Exception as e:
-        return str(e)
-        
-    finally:
-        cursor.close()
-
-@app.route('/index/<int:internship_id>')
-def display_internship(internship_id):
-
-    statement = "SELECT * FROM Internship"
+    statement = "SELECT * FROM Internship WHERE intern_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(statement, (internship_id))
     result = cursor.fetchone()
     cursor.close()
 
-    return render_template('index.html', internship= result)     
+    com_statement = "SELECT * FROM Company WHERE com_id = %s"
+    com_cursor = db_conn.cursor()
+    com_cursor.execute(com_statement, (result[1]))
+    com_result = com_cursor.fetchone()
+    com_cursor.close()
+
+    return render_template('index.html', intern=result, com=com_result)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
