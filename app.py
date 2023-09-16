@@ -41,22 +41,13 @@ def display_internship():
 def jobDetails(id):
 
     #Get Internship details
-    details_statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    details_statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation FROM Internship i, Company c WHERE intern_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(details_statement, (id))
     details = cursor.fetchone()
     cursor.close()
-
-    #Get Company details
-    com_statement = "SELECT * FROM Company WHERE com_id = %s"
-    com_cursor = db_conn.cursor()
-    cursor.execute(com_statement,(details[1]))
-    com = cursor.fetchone()
-    com_cursor.close()
     
-    return render_template('job_details.html', internship = details, company = com)
-    
-return render_template('job_details.html', internship = details, company = com)
+    return render_template('job_details.html', internship = details)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
