@@ -36,7 +36,14 @@ def display_internship():
     result = cursor.fetchall()
     cursor.close()
 
-    return render_template('index.html', internship = result) 
+    #Get Industry involve
+    statement = "SELECT DISTINCT industry_involve FROM Company;"
+    cursor = db_conn.cursor()
+    cursor.execute(statement)
+    indus = cursor.fetchall()
+    cursor.close()
+
+    return render_template('index.html', internship = result, category = indus)    
 
 @app.route('/index/job_details/<int:id>')
 def jobDetails(id):
