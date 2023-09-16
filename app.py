@@ -29,7 +29,8 @@ output = {}
 @app.route("/", methods=['GET'])
 def display_internship():
 
-    statement = "SELECT * FROM Internship"
+    #Get All Internship
+    statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, FROM Internship i, Company c"
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchall()
