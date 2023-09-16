@@ -37,5 +37,16 @@ def display_internship():
 
     return render_template('index.html', internship = result)    
 
+@app.route('/index/job_details/<int:id>')
+def viewDetails(id):
+    
+    #Get Internship details
+    statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    details_cursor = db_conn.cursor()
+    details_cursor.execute(statement, (id))
+    details = details_cursor.fetchone()
+    details_cursor.close()
+    
+    return render_template('job_details.html', internship = details)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
