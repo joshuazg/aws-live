@@ -26,11 +26,7 @@ db_conn = connections.Connection(
 )
 output = {}
 
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    return render_template('index.html')
-
-@app.route("/index", methods=['GET'])
+@app.route("/", methods=['GET'])
 def display_internship():
 
     statement = "SELECT * FROM Internship"
