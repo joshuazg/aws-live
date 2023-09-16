@@ -38,8 +38,8 @@ def display_internship():
     return render_template('index.html', internship = result)    
 
 @app.route('/index/job_details/<int:id>')
-def viewDetails(id):
-    
+def jobDetails(id):
+
     #Get Internship details
     statement = "SELECT * FROM Internship WHERE intern_id = %s"
     details_cursor = db_conn.cursor()
