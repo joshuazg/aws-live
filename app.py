@@ -41,7 +41,7 @@ def display_internship():
 def jobDetails(id):
 
     #Get Internship details
-    details_statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description FROM Internship i, Company c WHERE intern_id = %s"
+    details_statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, c.product_service, c.industry_involve, c.person_incharge, c.contact_no, c.e-mail FROM Internship i, Company c WHERE intern_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(details_statement, (id))
     details = cursor.fetchone()
