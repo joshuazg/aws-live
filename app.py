@@ -31,7 +31,7 @@ def home():
     return render_template('index.html')
 
 @app.route("/index", methods=['GET'])
-def view_internship(internship_id):
+def homepage():
 
     statement = "SELECT * FROM Internship WHERE intern_id = %s"
     cursor = db_conn.cursor()
