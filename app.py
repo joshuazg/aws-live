@@ -25,38 +25,42 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = "Internship"
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('try.html')
-    
-@app.route("/", methods=['GET'])
+    return render_template('index.html')
+
+@app.route("/displayIntern", methods=['GET'])
 def get_intern_com_details():
     try:
-        # Establish a database connection
-        db_conn = mysql.connector.connect(**db_config)
-        cursor = db_conn.cursor(dictionary=True)  # Use dictionary cursor for easier data manipulation
+        # Corrected SQL statement with placeholder
+        statement = "SELECT intern_id, company_name FROM Internship"
+        cursor = db_conn.cursor()
         
-        # Corrected SQL statement to select all rows
-        statement = "SELECT intern_id, company_name FROM Internship WHERE intern_id = 1"
-        
-        # Fetch all rows
-        cursor.execute(statement)
-        results = cursor.fetchall()
+        # Fetch the result
+        result = cursor.fetchone()
 
-        if results:
-            # Pass the results to the HTML template
-            return render_template('try.html', results=results)
+        if result:
+            intern_id, company_name = result
+            return render_template('try.html', name=intern_id, company_name=company_name)
         else:
-            return "No data found."
-
+            return "No data found"
+        
     except Exception as e:
         return str(e)
-
+        
     finally:
         cursor.close()
-        db_conn.close()
-              
+
+@app.route('/index/<int:internship_id>')
+def display_internship(internship_id):
+
+    statement = "SELECT * FROM Internship"
+    cursor = db_conn.cursor()
+    cursor.execute(statement, (internship_id))
+    result = cursor.fetchone()
+    cursor.close()
+
+    return render_template('index.html', internship= result)     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
