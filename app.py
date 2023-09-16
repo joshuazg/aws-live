@@ -46,6 +46,15 @@ def jobDetails(id):
     cursor.execute(details_statement, (id))
     details = cursor.fetchone()
     cursor.close()
+
+    #Get Company details
+    com_statement = "SELECT * FROM Company WHERE com_id = %s"
+    com_cursor = db_conn.cursor()
+    cursor.execute(com_statement,(details[1]))
+    com = cursor.fetchone()
+    com_cursor.close()
+    
+    return render_template('job_details.html', internship = details, company = com)
     
     return render_template('job_details.html', internship = details)
 if __name__ == '__main__':
