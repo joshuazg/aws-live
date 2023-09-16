@@ -31,21 +31,15 @@ def home():
     return render_template('index.html')
 
 @app.route("/index", methods=['GET'])
-def homepage():
+def display_internship():
 
-    statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    statement = "SELECT * FROM Internship"
     cursor = db_conn.cursor()
-    cursor.execute(statement, (internship_id))
-    result = cursor.fetchone()
+    cursor.execute(statement)
+    result = cursor.fetchall()
     cursor.close()
 
-    com_statement = "SELECT * FROM Company WHERE com_id = %s"
-    com_cursor = db_conn.cursor()
-    com_cursor.execute(com_statement, (result[1]))
-    com_result = com_cursor.fetchone()
-    com_cursor.close()
-
-    return render_template('index.html', intern=result, com=com_result)
+    return render_template('index.html', internship = result)    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
