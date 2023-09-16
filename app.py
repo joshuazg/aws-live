@@ -41,11 +41,11 @@ def display_internship():
 def jobDetails(id):
 
     #Get Internship details
-    statement = "SELECT * FROM Internship WHERE intern_id = id"
-    details_cursor = db_conn.cursor()
-    details_cursor.execute(statement)
-    details = details_cursor.fetchone()
-    details_cursor.close()
+    details_statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(details_statement, (id))
+    details = cursor.fetchone()
+    cursor.close()
     
     return render_template('job_details.html', internship = details)
 if __name__ == '__main__':
