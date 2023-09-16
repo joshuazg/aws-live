@@ -30,13 +30,13 @@ output = {}
 def display_internship():
 
     #Get All Internship
-    statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description FROM Internship i, Company c"
+    statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, c.industry_involve FROM Internship i, Company c"
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchall()
     cursor.close()
 
-    return render_template('index.html', internship = result)    
+    return render_template('index.html', internship = result) 
 
 @app.route('/index/job_details/<int:id>')
 def jobDetails(id):
