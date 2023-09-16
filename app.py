@@ -41,9 +41,9 @@ def display_internship():
 def jobDetails(id):
 
     #Get Internship details
-    statement = "SELECT * FROM Internship WHERE intern_id = %s"
+    statement = "SELECT * FROM Internship WHERE intern_id = id"
     details_cursor = db_conn.cursor()
-    details_cursor.execute(statement, (id))
+    details_cursor.execute(statement)
     details = details_cursor.fetchone()
     details_cursor.close()
     
