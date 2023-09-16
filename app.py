@@ -56,6 +56,7 @@ def jobDetails(id):
     
     return render_template('job_details.html', internship = details, company = com)
     
-    return render_template('job_details.html', internship = details)
+return render_template('job_details.html', internship = details, company = com)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
