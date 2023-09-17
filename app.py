@@ -71,7 +71,7 @@ def jobList(cate):
     typ = cursor.fetchone()
     cursor.close()
     
-    return render_template('job_listing.html', listing = list, type = type)
+    return render_template('job_listing.html', listing = list, type = typ)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
