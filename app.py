@@ -68,7 +68,7 @@ def jobList(cate):
     intern = cursor.fetchall()
     cursor.close()
     
-    return render_template('job_details.html', internship = details)
+    return render_template('job_details.html', internship = intern)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
