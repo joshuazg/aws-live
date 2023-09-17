@@ -69,15 +69,8 @@ def jobList(cate):
     cursor.execute(cate_statement, (cate))
     list = cursor.fetchall()
     cursor.close()
-
-    #Get Category
-    listType_statement = "SELECT industry_involve FROM Company WHERE industry_involve = %s "
-    cursor = db_conn.cursor()
-    cursor.execute(listType_statement)
-    typ = cursor.fetchone()
-    cursor.close()
     
-    return render_template('job_listing.html', listing = list, type = typ)
+    return render_template('job_listing.html', listing = list)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
