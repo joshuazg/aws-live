@@ -71,7 +71,7 @@ def jobList(cate):
     cursor.close()
 
     #Get Category
-    listType_statement = "SELECT DISTINCT industry_involve FROM Company WHERE industry_involve = cate "
+    listType_statement = "SELECT industry_involve FROM Company WHERE industry_involve = %s "
     cursor = db_conn.cursor()
     cursor.execute(listType_statement)
     typ = cursor.fetchone()
