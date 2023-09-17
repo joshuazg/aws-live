@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>{{row[8]}}</h2>
+                                <h2>{{internship[8]}}</h2>
                             </div>
                         </div>
                     </div>
@@ -104,6 +104,7 @@
                         <section class="featured-job-area">
                             <div class="container">
                                 <!-- single-job-content -->
+                                {% for row in internship %}
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
@@ -125,6 +126,7 @@
                                         <a href="{{ url_for('jobList', id=row[0]) }}">View details</a>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
                         </section>
                         <!-- Featured_job_end -->
