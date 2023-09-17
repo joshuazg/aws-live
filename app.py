@@ -30,16 +30,17 @@ output = {}
 def display_internship():
 
     #Get All Internship
-    statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve FROM Internship i, Company c"
+    statement = """SELECT i.intern_id, i.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+                    FROM Internship i INNER JOIN Company c WHERE i.com_name = c.com_id"""
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchall()
     cursor.close()
 
     #Get Industry involve
-    statement_indus = "SELECT DISTINCT industry_involve FROM Company;"
+    statement = "SELECT DISTINCT industry_involve FROM Company;"
     cursor = db_conn.cursor()
-    cursor.execute(statement_indus)
+    cursor.execute(statement)
     indus = cursor.fetchall()
     cursor.close()
 
@@ -53,6 +54,19 @@ def jobDetails(id):
     cursor = db_conn.cursor()
     cursor.execute(details_statement, (id))
     details = cursor.fetchone()
+    cursor.close()
+    
+    return render_template('job_details.html', internship = details)
+
+@app.route('/index/job_listing/<string:cate>')
+def jobList(cate):
+
+    #Get Internship details
+    cate_statement = """SELECT i.intern_id, i.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+                        FROM Internship i INNER JOIN Company c WHERE i.com_name = c.com_id AND c.industry_involve = %s """
+    cursor = db_conn.cursor()
+    cursor.execute(cate_statement, (cate))
+    intern = cursor.fetchall()
     cursor.close()
     
     return render_template('job_details.html', internship = details)
