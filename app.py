@@ -30,10 +30,10 @@ output = {}
 def display_internship():
 
     #Get All Internship
-    statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+    home_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
     FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id"""
     cursor = db_conn.cursor()
-    cursor.execute(statement)
+    cursor.execute(home_statement)
     result = cursor.fetchall()
     cursor.close()
 
@@ -62,15 +62,22 @@ def jobDetails(id):
 @app.route('/index/job_listing/<string:cate>')
 def jobList(cate):
 
-    #Get Internship details
+    #Get Specific Listing 
     cate_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
                         FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND c.industry_involve = %s """
     cursor = db_conn.cursor()
     cursor.execute(cate_statement, (cate))
     list = cursor.fetchall()
     cursor.close()
+
+    #Get Category
+    listType_statement = "SELECT DISTINCT industry_involve FROM Company WHERE industry_involve = %s "
+    cursor = db_conn.cursor()
+    cursor.execute(listType_statement)
+    typ = cursor.fetchone()
+    cursor.close()
     
-    return render_template('job_listing.html', listing = list)
+    return render_template('job_listing.html', listing = list, type = typ)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
