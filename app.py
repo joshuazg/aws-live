@@ -30,17 +30,16 @@ output = {}
 def display_internship():
 
     #Get All Internship
-    statement = """SELECT i.intern_id, i.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
-                    FROM Internship i INNER JOIN Company c WHERE i.com_name = c.com_id"""
+    statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve FROM Internship i INNER JOIN Company c WHERE i.com_name = c.com_id"
     cursor = db_conn.cursor()
     cursor.execute(statement)
     result = cursor.fetchall()
     cursor.close()
 
     #Get Industry involve
-    statement = "SELECT DISTINCT industry_involve FROM Company;"
+    indus_statement = "SELECT DISTINCT industry_involve FROM Company"
     cursor = db_conn.cursor()
-    cursor.execute(statement)
+    cursor.execute(indus_statement)
     indus = cursor.fetchall()
     cursor.close()
 
@@ -50,7 +49,7 @@ def display_internship():
 def jobDetails(id):
 
     #Get Internship details
-    details_statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, c.product_service, c.industry_involve, c.person_incharge, c.contact_no, c.email FROM Internship i, Company c WHERE intern_id = %s"
+    details_statement = "SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, i.accommodation, i.job_description, c.product_service, c.industry_involve, c.person_incharge, c.contact_no, c.email FROM Internship INNER JOIN Company c WHERE i.com_name = c.com_id AND intern_id = %s"
     cursor = db_conn.cursor()
     cursor.execute(details_statement, (id))
     details = cursor.fetchone()
@@ -63,7 +62,7 @@ def jobList(cate):
 
     #Get Internship details
     cate_statement = """SELECT i.intern_id, i.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
-                        FROM Internship i INNER JOIN Company c WHERE i.com_name = c.com_id AND c.industry_involve = %s """
+                        FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND c.industry_involve = %s """
     cursor = db_conn.cursor()
     cursor.execute(cate_statement, (cate))
     intern = cursor.fetchall()
