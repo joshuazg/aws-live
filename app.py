@@ -37,9 +37,9 @@ def display_internship():
     cursor.close()
 
     #Get Industry involve
-    statement = "SELECT DISTINCT industry_involve FROM Company;"
+    statement_indus = "SELECT DISTINCT industry_involve FROM Company;"
     cursor = db_conn.cursor()
-    cursor.execute(statement)
+    cursor.execute(statement_indus)
     indus = cursor.fetchall()
     cursor.close()
 
