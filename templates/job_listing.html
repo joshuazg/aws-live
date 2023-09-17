@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>{{internship[8]}}</h2>
+                                <h2>{{row[8]}}</h2>
                             </div>
                         </div>
                     </div>
@@ -107,22 +107,22 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <img src="{{ url_for('static', filename='img/icon/job-list' + internship[0]|string + '.png') }}"
+                                            <img src="{{ url_for('static', filename='img/icon/job-list' + row[0]|string + '.png') }}"
                                                 alt="Internship">
                                         </div>
                                         <div class="job-tittle">
-                                            <h4>{{internship[2]}}</h4>
+                                            <h4>{{row[2]}}</h4>
                                             <ul>
-                                                <li>{{internship[1]}}</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>{{internship[6]}}</li>
-                                                <li>{{internship[5]}}</li>
-                                                <li>{{internship[7]}}</li>
-                                                <li>{{internship[8]}}</li>
+                                                <li>{{row[1]}}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{row[6]}}</li>
+                                                <li>{{row[5]}}</li>
+                                                <li>{{row[7]}}</li>
+                                                <li>{{row[8]}}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link f-right">
-                                        <a href="{{ url_for('jobList', id=internship[0]) }}">View details</a>
+                                        <a href="{{ url_for('jobList', id=row[0]) }}">View details</a>
                                     </div>
                                 </div>
                             </div>
