@@ -68,9 +68,10 @@ def jobList(cate):
     cursor = db_conn.cursor()
     cursor.execute(cate_statement, (cate))
     list = cursor.fetchall()
+    typ = cursor.fetchone()
     cursor.close()
     
-    return render_template('job_listing.html', listing = list)
+    return render_template('job_listing.html', listing = list, type = type)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
