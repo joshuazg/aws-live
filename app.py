@@ -67,10 +67,10 @@ def jobList(cate):
                         FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND c.industry_involve = %s """
     cursor = db_conn.cursor()
     cursor.execute(cate_statement, (cate))
-    intern = cursor.fetchall()
+    list = cursor.fetchall()
     cursor.close()
     
-    return render_template('job_details.html', internship = intern)
+    return render_template('job_details.html', listing = list)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
