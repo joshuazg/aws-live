@@ -1,0 +1,18 @@
+/templates/response.html
+<h3>{{numrows}} Records Found</h3>
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+      </tr>
+  </thead>
+  <tbody>
+{% for row in company %}  
+   <tr>
+    <td>{{row.com_name}}</td>
+    <td>{{row.person_incharge}}</td>
+    <td>{{row.email}}</td>
+   </tr>
+{% endfor %} 
