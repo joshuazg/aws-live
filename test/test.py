@@ -36,7 +36,7 @@ def search():
 
     # Execute a SQL query to search for the data
     cursor = db_conn.cursor()
-    cursor.execute("SELECT * FROM Company WHERE com_name LIKE ?", ('%' + query + '%',))
+    cursor.execute("SELECT * FROM Company WHERE com_name LIKE %s", ('%' + query + '%',))
     results = cursor.fetchall()
     cursor.close()
 
