@@ -40,7 +40,7 @@ def search():
     results = cursor.fetchall()
     cursor.close()
 
-    return render_template('search_results.html', results=results)
+    return render_template('search_result.html', results=results)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
