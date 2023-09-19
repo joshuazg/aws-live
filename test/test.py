@@ -41,13 +41,7 @@ def search():
     results = cursor.fetchall()
     cursor.close()
 
-    search_statement = """"""
-    cursor = db_conn.cursor()
-    cursor.execute(search_statement)
-    search = cursor.fetchall()
-    cursor.close()
-
-    return render_template('search_results.html', results=results, search=search)
+    return render_template('search_results.html', results=results)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
