@@ -72,5 +72,22 @@ def jobList(cate):
     
     return render_template('job_listing.html', listing = list, type = cate)
 
+@app.route("/ajaxlivesearch",methods=["POST","GET"])
+def ajaxlivesearch():
+    if request.method == 'POST':
+        search_word = request.form['query']
+        print(search_word)
+        if search_word == '':
+            query = "SELECT * from Company ORDER BY com_id"
+            cur.execute(query)
+            com = cur.fetchall()
+        else:    
+            query = "SELECT * from Company WHERE com_name LIKE '%{}%' ORDER BY id DESC LIMIT 20".format(search_word,search_word,search_word)
+            cur.execute(query)
+            numrows = int(cur.rowcount)
+            com = cur.fetchall()
+            print(numrows)
+    return jsonify({'htmlresponse': render_template('index.html', employee=com, numrows=numrows)})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
