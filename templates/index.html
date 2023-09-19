@@ -23,6 +23,33 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
             <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+	    <script>
+		$(document).ready(function(){
+		  load_data();
+		  function load_data(query)
+		  {
+		   $.ajax({
+		    url:"/ajaxlivesearch",
+		    method:"POST",
+		    data:{query:query},
+		    success:function(data)
+		    {
+		      $('#result').html(data);
+		      $("#result").append(data.htmlresponse);
+		    }
+		   });
+		  }
+		  $('#search_text').keyup(function(){
+		    var search = $(this).val();
+		    if(search != ''){
+		    load_data(search);
+		   }else{
+		    load_data();
+		   }
+		  });
+		});
+	    </script>
    </head>
 
    <body>
@@ -47,17 +74,11 @@
                             </div>
                         </div>
                         <!-- Search Box -->
-                        <div class="row">
-                            <div class="col-xl-8">
-                                <!-- form -->
-                                <form action="#" class="search-box">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Job Tittle or keyword">
-                                    </div>
-                                    <div class="search-form">
-                                        <a href="#">Find job</a>
-                                    </div>	
-                                </form>	
+                        <div class="search-box">
+                            <div class="row">
+                                <div class="col-md-8    ">
+                                    <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search company name">
+                                </div> 
                             </div>
                         </div>
                     </div>
