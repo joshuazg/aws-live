@@ -87,7 +87,7 @@ def ajaxlivesearch():
             numrows = int(cur.rowcount)
             com = cur.fetchall()
             print(numrows)
-    return jsonify({'htmlresponse': render_template('response.html', employee=com, numrows=numrows)})
+    return jsonify({'htmlresponse': render_template('response.html', company=com, numrows=numrows)})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
