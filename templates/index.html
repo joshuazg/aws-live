@@ -23,33 +23,6 @@
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
             <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
 	    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-	    <script>
-		$(document).ready(function(){
-		  load_data();
-		  function load_data(query)
-		  {
-		   $.ajax({
-		    url:"/ajaxlivesearch",
-		    method:"POST",
-		    data:{query:query},
-		    success:function(data)
-		    {
-		      $('#result').html(data);
-		      $("#result").append(data.htmlresponse);
-		    }
-		   });
-		  }
-		  $('#search_text').keyup(function(){
-		    var search = $(this).val();
-		    if(search != ''){
-		    load_data(search);
-		   }else{
-		    load_data();
-		   }
-		  });
-		});
-	    </script>
    </head>
 
    <body>
@@ -75,17 +48,13 @@
                         </div>
                         <!-- Search Box -->
                         <div class="container search-table">
-			<p><h2 align="center">Python Flask Live Data Search using Jquery Ajax and MySql Database</h2></p>
-			            <div class="search-box">
-			                <div class="row">
-			                    <div class="col-md-3">
-			                        <h5>Search All Fields</h5>
-			                    </div>
-			                    <div class="col-md-9">
-			                        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search all fields e.g. HTML">
-			                    </div> 
-			                </div>
-			            </div>
+			    <div class="search-box">
+				<div class="row">
+				    <div class="col-md-9">
+					<input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search company">
+				    </div> 
+				</div>
+			    </div>
 			   <div id="result"></div>
 			</div>
                     </div>
@@ -206,30 +175,6 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
-        <style>
-		.search-table{
-		    padding: 10%;
-		    margin-top: -6%;
-		}
-		.search-box{
-		    background: #c1c1c1;
-		    border: 1px solid #ababab;
-		    padding: 3%;
-		}
-		.search-box input:focus{
-		    box-shadow:none;
-		    border:2px solid #eeeeee;
-		}
-		.search-list{
-		    background: #fff;
-		    border: 1px solid #ababab;
-		    border-top: none;
-		}
-		.search-list h3{
-		    background: #eee;
-		    padding: 3%;color:#fe6f41;
-		    margin-bottom: 0%;
-		}
-	</style>
+
     </body>
 </html>
