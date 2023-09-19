@@ -82,7 +82,7 @@ def ajaxlivesearch():
             cur.execute(query)
             com = cur.fetchall()
         else:    
-            query = "SELECT * from Company WHERE com_name LIKE '%{}%' ORDER BY id DESC LIMIT 20".format(search_word,search_word,search_word)
+            query = "SELECT * from Company WHERE com_name LIKE '%{}%' ORDER BY com_id DESC LIMIT 20".format(search_word,search_word,search_word)
             cur.execute(query)
             numrows = int(cur.rowcount)
             com = cur.fetchall()
