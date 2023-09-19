@@ -36,12 +36,12 @@ def search():
 
     # Execute a SQL query to search for the data
     cursor = db_conn.cursor()
-    cursor.execute("SELECT * FROM Company WHERE com_name LIKE %s", ('%' + query + '%',))
+    cursor.execute("SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
+    FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id AND com_name LIKE %s", ('%' + query + '%',))
     results = cursor.fetchall()
     cursor.close()
 
-    search_statement = """SELECT i.intern_id, c.com_name, i.job_title, i.intern_salary, i.location, i.workingDay, i.workingHour, c.industry_involve 
-    FROM Internship i INNER JOIN Company c WHERE i.com_id = c.com_id"""
+    search_statement = """"""
     cursor = db_conn.cursor()
     cursor.execute(search_statement)
     search = cursor.fetchall()
