@@ -51,7 +51,10 @@
 			    <div class="search-box">
 				<div class="row">
 				    <div class="col-md-9">
-					<input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search company">
+					    <form action="/search" method="GET">
+					    	<input type="text" name="query" id="search_text" class="form-control" placeholder="Search company">
+					        <button type="submit">Search</button>
+					    </form>
 				    </div> 
 				</div>
 			    </div>
